@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-05-12T18:59:33 PST" name="Default suite" finished-at="2025-05-12T18:59:50 PST" duration-ms="17183">
+    <groups>
+    </groups>
+    <test started-at="2025-05-12T18:59:33 PST" name="Default test" finished-at="2025-05-12T18:59:50 PST" duration-ms="17183">
+      <class name="louisivanvirgo.OrderCompTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:louisivanvirgo.OrderCompTest@268f106e]" started-at="2025-05-12T18:59:33 PST" name="setUp" finished-at="2025-05-12T18:59:36 PST" duration-ms="2803" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUpPages()[pri:0, instance:louisivanvirgo.OrderCompTest@268f106e]" started-at="2025-05-12T18:59:36 PST" name="setUpPages" finished-at="2025-05-12T18:59:38 PST" duration-ms="1732" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpPages -->
+        <test-method signature="testBackToProductPage()[pri:0, instance:louisivanvirgo.OrderCompTest@268f106e]" started-at="2025-05-12T18:59:38 PST" name="testBackToProductPage" finished-at="2025-05-12T18:59:38 PST" duration-ms="331" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testBackToProductPage -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:louisivanvirgo.OrderCompTest@268f106e]" started-at="2025-05-12T18:59:38 PST" name="tearDown" finished-at="2025-05-12T18:59:38 PST" duration-ms="119" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:louisivanvirgo.OrderCompTest@268f106e]" started-at="2025-05-12T18:59:38 PST" name="setUp" finished-at="2025-05-12T18:59:40 PST" duration-ms="2004" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUpPages()[pri:0, instance:louisivanvirgo.OrderCompTest@268f106e]" started-at="2025-05-12T18:59:40 PST" name="setUpPages" finished-at="2025-05-12T18:59:42 PST" duration-ms="1831" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpPages -->
+        <test-method signature="testFinishButton()[pri:0, instance:louisivanvirgo.OrderCompTest@268f106e]" started-at="2025-05-12T18:59:42 PST" name="testFinishButton" finished-at="2025-05-12T18:59:42 PST" duration-ms="156" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFinishButton -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:louisivanvirgo.OrderCompTest@268f106e]" started-at="2025-05-12T18:59:42 PST" name="tearDown" finished-at="2025-05-12T18:59:42 PST" duration-ms="114" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:louisivanvirgo.OrderCompTest@268f106e]" started-at="2025-05-12T18:59:42 PST" name="setUp" finished-at="2025-05-12T18:59:44 PST" duration-ms="2031" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUpPages()[pri:0, instance:louisivanvirgo.OrderCompTest@268f106e]" started-at="2025-05-12T18:59:44 PST" name="setUpPages" finished-at="2025-05-12T18:59:46 PST" duration-ms="1784" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpPages -->
+        <test-method signature="verifyIfAllDetailsAreDisplayed()[pri:0, instance:louisivanvirgo.OrderCompTest@268f106e]" started-at="2025-05-12T18:59:46 PST" name="verifyIfAllDetailsAreDisplayed" finished-at="2025-05-12T18:59:46 PST" duration-ms="245" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyIfAllDetailsAreDisplayed -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:louisivanvirgo.OrderCompTest@268f106e]" started-at="2025-05-12T18:59:46 PST" name="tearDown" finished-at="2025-05-12T18:59:46 PST" duration-ms="119" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:louisivanvirgo.OrderCompTest@268f106e]" started-at="2025-05-12T18:59:46 PST" name="setUp" finished-at="2025-05-12T18:59:48 PST" duration-ms="2007" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUpPages()[pri:0, instance:louisivanvirgo.OrderCompTest@268f106e]" started-at="2025-05-12T18:59:48 PST" name="setUpPages" finished-at="2025-05-12T18:59:50 PST" duration-ms="1566" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpPages -->
+        <test-method signature="verifyIfUserIsOnOrderCompletionPage()[pri:0, instance:louisivanvirgo.OrderCompTest@268f106e]" started-at="2025-05-12T18:59:50 PST" name="verifyIfUserIsOnOrderCompletionPage" finished-at="2025-05-12T18:59:50 PST" duration-ms="167" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyIfUserIsOnOrderCompletionPage -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:louisivanvirgo.OrderCompTest@268f106e]" started-at="2025-05-12T18:59:50 PST" name="tearDown" finished-at="2025-05-12T18:59:50 PST" duration-ms="131" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- louisivanvirgo.OrderCompTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
