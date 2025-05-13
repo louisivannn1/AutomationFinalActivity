@@ -2,27 +2,16 @@ package louisivanvirgo;
 
 import org.testng.annotations.BeforeMethod;
 import louisivanvirgo.AbstractComponents.BaseTest;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import louisivanvirgo.AbstractComponents.BaseTest;
-import louisivanvirgo.LoginPage;
-import org.openqa.selenium.chrome.*;
-import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class CartPageTest extends BaseTest {
 	private CartFunc cartFunc;
 	private CartPage cartPage;
-	private LoginPage login;
 
 	@BeforeMethod
 	public void setUpPages() {
-		login = new LoginPage(driver);
-		login.loginAs("standard_user", "secret_sauce");
-		Assert.assertTrue(driver.getCurrentUrl().contains("inventory.html"), "Not on inventory page!");
+
 		cartFunc = new CartFunc(driver);
 		cartPage = new CartPage(driver);
 	}
@@ -30,7 +19,7 @@ public class CartPageTest extends BaseTest {
 	@Test
 	public void testAccessCartPage() {
 		cartPage.goToCartPage();
-		Assert.assertTrue(cartPage.isCartPageAccesibble(), "Cart page is not accessible");
+		Assert.assertTrue(cartPage.isCartPageAccessible(), "Cart page is not accessible");
 	}
 
 	@Test
@@ -44,7 +33,7 @@ public class CartPageTest extends BaseTest {
 	public void testCSButtonButtonRedirectsToInventory() {
 		cartPage.goToCartPage();
 		cartPage.clickContinueShopping();
-		Assert.assertTrue(cartPage.isOnProductPage(), "Continue Shoppinh Button did not redirect back to product page");
+		Assert.assertTrue(cartPage.isOnProductPage(), "Continue Shopping Button did not redirect back to product page");
 	}
 
 	@Test
@@ -78,7 +67,7 @@ public class CartPageTest extends BaseTest {
 	}
 
 	@Test
-	public void testRemovveAllItemsFromCart() {
+	public void testRemoveAllItemsFromCart() {
 		cartFunc.addMultipleItemsToCart(3);
 		cartPage.goToCartPage();
 		cartPage.removeAllItems();
@@ -94,10 +83,9 @@ public class CartPageTest extends BaseTest {
 		cartFunc.logOut();
 
 		login.loginAs("standard_user", "secret_sauce");
-		
-		
+
 		cartPage = new CartPage(driver);
 		cartPage.goToCartPage();
-		Assert.assertTrue(cartPage.getCartItemCount()>0, "Cart did not persist after re-login");
+		Assert.assertTrue(cartPage.getCartItemCount() > 0, "Cart did not persist after re-login");
 	}
 }

@@ -1,16 +1,11 @@
 package louisivanvirgo;
 
-import java.time.Duration;
 import java.util.List;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import louisivanvirgo.AbstractComponents.BasePage;
-import louisivanvirgo.AbstractComponents.BaseTest;
 
 public class CartPage extends BasePage {
 	private WebDriver driver;
@@ -52,7 +47,7 @@ public class CartPage extends BasePage {
 		waitForElementToBeClickable(cartLink).click();
 	}
 
-	public boolean isCartPageAccesibble() {
+	public boolean isCartPageAccessible() {
 		return driver.getCurrentUrl().contains("cart.html");
 	}
 

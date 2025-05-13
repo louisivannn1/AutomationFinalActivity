@@ -1,19 +1,14 @@
 package louisivanvirgo;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import louisivanvirgo.AbstractComponents.BasePage;
-import louisivanvirgo.AbstractComponents.BaseTest;
 
 public class ProductPage extends BasePage {
 
@@ -46,10 +41,10 @@ public class ProductPage extends BasePage {
 
 	@FindBy(className = "shopping_cart_link")
 	WebElement cartIcon;
-	
+
 	public boolean areAllProductsVisible() {
 		for (WebElement productItem : productItems) {
-			if(!productItem.isDisplayed()) {
+			if (!productItem.isDisplayed()) {
 				return false;
 			}
 		}
@@ -57,8 +52,8 @@ public class ProductPage extends BasePage {
 	}
 
 	public boolean areAllProductDetailsPresent() {
-		if (productItems.isEmpty() || productNames.isEmpty() || productImages.isEmpty()
-				|| productDescriptions.isEmpty() || productPrices.isEmpty()) {
+		if (productItems.isEmpty() || productNames.isEmpty() || productImages.isEmpty() || productDescriptions.isEmpty()
+				|| productPrices.isEmpty()) {
 			return false;
 		}
 		for (int i = 0; i < productItems.size(); i++) {
@@ -72,7 +67,7 @@ public class ProductPage extends BasePage {
 			if (waitForElementToBeVisible(addToCartButtons.get(i)).getText().isEmpty())
 				return false;
 			if (waitForElementToBeVisible(productPrices.get(i)).getText().isEmpty())
-					return false;
+				return false;
 		}
 
 		return true;

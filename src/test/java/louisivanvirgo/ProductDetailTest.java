@@ -2,16 +2,8 @@ package louisivanvirgo;
 
 import org.testng.annotations.BeforeMethod;
 import louisivanvirgo.AbstractComponents.BaseTest;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import louisivanvirgo.AbstractComponents.BaseTest;
-import louisivanvirgo.LoginPage;
-import org.openqa.selenium.chrome.*;
-import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class ProductDetailTest extends BaseTest {
 	ProductPage productPage;
@@ -19,9 +11,6 @@ public class ProductDetailTest extends BaseTest {
 
 	@BeforeMethod
 	public void setUpPages() {
-		LoginPage login = new LoginPage(driver);
-		login.loginAs("standard_user", "secret_sauce");
-		Assert.assertTrue(driver.getCurrentUrl().contains("inventory.html"), "Not on inventory page!");
 
 		productPage = new ProductPage(driver);
 		detailPage = productPage.clickProduct(0);

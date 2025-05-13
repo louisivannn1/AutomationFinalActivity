@@ -1,78 +1,90 @@
 package louisivanvirgo;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import louisivanvirgo.AbstractComponents.BaseTest;
-import louisivanvirgo.LoginPage;
-
-import org.openqa.selenium.chrome.*;
-import org.openqa.selenium.support.FindBy;
+import louisivanvirgo.AbstractComponents.LoginBaseTest;
+import utilities.ExcelUtil;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
-public class LoginTest extends BaseTest {
+public class LoginTest extends LoginBaseTest {
+
+	LoginPage loginPage;
+
+	public void setupLoginPage() {
+		loginPage = new LoginPage(driver);
+	}
 
 	@Test
-	public void testLoginPageElements() {
-		LoginPage loginPage = new LoginPage(driver);
-		Assert.assertTrue(loginPage.isUsernameInputDisplayed(), "Username field is not displayed");
-		Assert.assertTrue(loginPage.isPasswordInputDisplayed(), "Password field is not displayed");
-		Assert.assertTrue(loginPage.isLoginButtonDisplayed(), "Login button field is not displayed");
+	public void testLoginPageAccessibility() {
+		setupLoginPage();
+		Assert.assertTrue(loginPage.isUsernameInputDisplayed(), "Username input is not displayed");
+		Assert.assertTrue(loginPage.isPasswordInputDisplayed(), "Password input is not displayed");
+		Assert.assertTrue(loginPage.isLoginButtonDisplayed(), "Login button is not displayed");
 	}
 
 	@Test
 	public void testIncorrectPassword() {
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.loginAs("standard_user", "wrong_pass");
-		Assert.assertTrue(loginPage.isErrorDisplayed());
-		
+		setupLoginPage();
+		String[] data = ExcelUtil.getTestData("incorrectPassword");
+		loginPage.loginAs(parse(data[0]), parse(data[1]));
+		Assert.assertTrue(loginPage.isErrorDisplayed(), "Error message not displayed");
+		Assert.assertTrue(loginPage.getErrorMessage().contains(data[2]),
+				"Expected error message: '" + data[2] + "' but got: '" + loginPage.getErrorMessage() + "'");
 	}
 
 	@Test
 	public void testIncorrectUsername() {
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.loginAs("incorrect_user", "wrong_pass");
+		setupLoginPage();
+		String[] data = ExcelUtil.getTestData("incorrectUsername");
+		loginPage.loginAs(parse(data[0]), parse(data[1]));
 		Assert.assertTrue(loginPage.isErrorDisplayed());
+		Assert.assertTrue(loginPage.getErrorMessage().contains(data[2]));
 	}
 
 	@Test
-	public void testEmptyUsername() {
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.loginAs("", "wrong_pass");
+	public void testBlankUsername() {
+		setupLoginPage();
+		String[] data = ExcelUtil.getTestData("blankUsername");
+		loginPage.loginAs(parse(data[0]), parse(data[1]));
 		Assert.assertTrue(loginPage.isErrorDisplayed());
+		Assert.assertTrue(loginPage.getErrorMessage().contains(data[2]));
 	}
 
 	@Test
-	public void testEmptyPassword() {
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.loginAs("standard_user", "");
+	public void testBlankPassword() {
+		setupLoginPage();
+		String[] data = ExcelUtil.getTestData("blankPassword");
+		loginPage.loginAs(parse(data[0]), parse(data[1]));
 		Assert.assertTrue(loginPage.isErrorDisplayed());
+		Assert.assertTrue(loginPage.getErrorMessage().contains(data[2]));
 	}
 
 	@Test
-	public void testEmptyFields() {
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.loginAs("", "");
+	public void testBlankBoth() {
+		setupLoginPage();
+		String[] data = ExcelUtil.getTestData("blankBoth");
+		loginPage.loginAs(parse(data[0]), parse(data[1]));
 		Assert.assertTrue(loginPage.isErrorDisplayed());
-	}
-	@Test
-	public void testValidLogin() {
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.loginAs("standard_user", "secret_sauce");
-		Assert.assertTrue(driver.getCurrentUrl().contains("inventory.html"), "User did not land on the products page after login");
-	}
-	@Test
-	public void testLockedOutUserLogin() {
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.loginAs("locked_out_user", "secret_sauce");
-		
-		String expectedError = "Epic sadface: Sorry, this user has been locked out.";
-		String actualError = loginPage.getErrorMessage();
-		
-		Assert.assertTrue(actualError.contains(expectedError),"Expected error message is not displayed for locked out user. Actual: " + actualError);
+		Assert.assertTrue(loginPage.getErrorMessage().contains(data[2]));
 	}
 
-	
+	@Test
+	public void testCorrectLogin() {
+		setupLoginPage();
+		String[] data = ExcelUtil.getTestData("correctLogin");
+		loginPage.loginAs(parse(data[0]), parse(data[1]));
+		Assert.assertTrue(driver.getCurrentUrl().contains("inventory.html"), "Login failed for correct credentials");
+	}
+
+	@Test
+	public void testLockedOutUser() {
+		setupLoginPage();
+		String[] data = ExcelUtil.getTestData("lockedOutUser");
+		loginPage.loginAs(parse(data[0]), parse(data[1]));
+		Assert.assertTrue(loginPage.isErrorDisplayed());
+		Assert.assertTrue(loginPage.getErrorMessage().contains(data[2]));
+	}
+
+	private String parse(String input) {
+		return input.equalsIgnoreCase("(blank)") ? "" : input;
+	}
 }

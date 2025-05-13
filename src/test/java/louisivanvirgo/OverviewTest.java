@@ -14,8 +14,6 @@ public class OverviewTest extends BaseTest {
 
 	@BeforeMethod
 	public void setUpPages() {
-		login = new LoginPage(driver);
-		login.loginAs("standard_user", "secret_sauce");
 
 		productPage = new ProductPage(driver);
 		productPage.clickAddToCart(0);

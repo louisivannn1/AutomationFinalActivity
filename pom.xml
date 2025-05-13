@@ -49,6 +49,7 @@
 			<version>7.11.0</version>
 			<scope>test</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>ivan</groupId>
 			<artifactId>selenium-java</artifactId>

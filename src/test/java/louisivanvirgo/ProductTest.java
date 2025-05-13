@@ -2,25 +2,15 @@ package louisivanvirgo;
 
 import org.testng.annotations.BeforeMethod;
 import louisivanvirgo.AbstractComponents.BaseTest;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import louisivanvirgo.AbstractComponents.BaseTest;
-import louisivanvirgo.LoginPage;
-import org.openqa.selenium.chrome.*;
-import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class ProductTest extends BaseTest {
 
 	private ProductPage productPage;
 
 	@BeforeMethod
-	public void loginBeforeTest() {
-		LoginPage login = new LoginPage(driver);
-		login.loginAs("standard_user", "secret_sauce");
+	public void setUpPages() {
 		productPage = new ProductPage(driver);
 	}
 
@@ -29,10 +19,11 @@ public class ProductTest extends BaseTest {
 		Assert.assertTrue(driver.getCurrentUrl().contains("inventory.html"), "User isn't on products page");
 	}
 
-	@Test 
+	@Test
 	public void testAllProductsAreVisible() {
 		Assert.assertTrue(productPage.areAllProductsVisible(), "Not all products are visible");
 	}
+
 	@Test
 	public void testAllProductDetailsAreDisplayed() {
 		Assert.assertTrue(productPage.areAllProductDetailsPresent(), "Some details are missing");

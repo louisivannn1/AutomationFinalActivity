@@ -1,16 +1,10 @@
 package louisivanvirgo;
 
-import java.time.Duration;
-import java.util.List;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import louisivanvirgo.AbstractComponents.BasePage;
-import louisivanvirgo.AbstractComponents.BaseTest;
 
 public class CheckoutPage extends BasePage {
 	private WebDriver driver;
@@ -56,9 +50,6 @@ public class CheckoutPage extends BasePage {
 	}
 
 	public void enterCheckoutInfo(String firstName, String lastName, String zip) {
-		waitForElementToBeVisible(firstNameField).clear();
-		waitForElementToBeVisible(lastNameField).clear();
-		waitForElementToBeVisible(zipField).clear();
 
 		if (firstName != null)
 			firstNameField.sendKeys(firstName);

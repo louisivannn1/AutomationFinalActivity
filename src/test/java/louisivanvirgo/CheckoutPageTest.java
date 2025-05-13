@@ -1,108 +1,109 @@
 package louisivanvirgo;
 
 import org.testng.annotations.BeforeMethod;
-import louisivanvirgo.AbstractComponents.BaseTest;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import louisivanvirgo.AbstractComponents.BaseTest;
-import louisivanvirgo.LoginPage;
-import org.openqa.selenium.chrome.*;
-import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import louisivanvirgo.AbstractComponents.BaseTest;
+import utilities.CheckoutPageUtil;
 
 public class CheckoutPageTest extends BaseTest {
 
-	private CartFunc cartFunc;
-	private CartPage cartPage;
-	private CheckoutPage checkoutPage;
-	private LoginPage login;
+    private CartFunc cartFunc;
+    private CartPage cartPage;
+    private CheckoutPage checkoutPage;
+    private LoginPage login;
 
-	@BeforeMethod
-	public void setUpPages() {
-		login = new LoginPage(driver);
-		login.loginAs("standard_user", "secret_sauce");
-		cartFunc = new CartFunc(driver);
-		cartFunc.addItemToCartByIndex(0);
-		cartPage = new CartPage(driver);
-		cartPage.goToCartPage();
-		cartPage.getCheckoutButton().click();
-		checkoutPage = new CheckoutPage(driver);
-	}
+    @BeforeMethod
+    public void setUpPages() {
+     
+        cartFunc = new CartFunc(driver);
+        cartFunc.addItemToCartByIndex(0);
 
-	@Test
-	public void testAccessToCheckoutInfoPage() {
-		Assert.assertTrue(checkoutPage.isOnYourInfoPage(), "User was not redirected to Information page");
-	}
+        cartPage = new CartPage(driver);
+        cartPage.goToCartPage();
+        cartPage.getCheckoutButton().click();
 
-	@Test
-	public void testFormElementsDisplayed() {
-		Assert.assertTrue(checkoutPage.isFormDisplayed());
-	}
+        checkoutPage = new CheckoutPage(driver);
+    }
 
-	@Test
-	public void testIfCancelRedirectsToCart() {
-		checkoutPage.clickCancel();
-		Assert.assertTrue(cartPage.isCartPageAccesibble());
-	}
+    @Test
+    public void testAccessToCheckoutInfoPage() {
+        Assert.assertTrue(checkoutPage.isOnYourInfoPage(), "User was not redirected to Information page");
+    }
 
-	@Test
-	public void testIfEmptyFieldsShowsError() {
-		checkoutPage.enterCheckoutInfo("", "", "");
-		checkoutPage.clickContinue();
-		Assert.assertTrue(checkoutPage.isErrorDisplayed(), "Error message was not displayed");
-	}
+    @Test
+    public void testFormElementsDisplayed() {
+        Assert.assertTrue(checkoutPage.isFormDisplayed(), "Form elements are not displayed");
+    }
 
-	@Test
-	public void testIfBlankFirstNameShowsError() {
-		checkoutPage.enterCheckoutInfo("", "Virgo", "12345");
-		checkoutPage.clickContinue();
-		Assert.assertTrue(checkoutPage.isErrorDisplayed(), "Error message was not displayed");
-	}
+    @Test
+    public void testIfCancelRedirectsToCart() {
+        checkoutPage.clickCancel();
+        Assert.assertTrue(cartPage.isCartPageAccessible(), "Cancel button did not redirect to cart");
+    }
 
-	@Test
-	public void testIfBlankLastNameShowsError() {
-		checkoutPage.enterCheckoutInfo("Ivan", "", "12345");
-		checkoutPage.clickContinue();
-		Assert.assertTrue(checkoutPage.isErrorDisplayed(), "Error message was not displayed");
-	}
+    @Test
+    public void testIfEmptyFieldsShowsError() {
+        String[] data = CheckoutPageUtil.getCheckoutTestData("blankAll");
+        checkoutPage.enterCheckoutInfo(data[0], data[1], data[2]);
+        checkoutPage.clickContinue();
+        Assert.assertTrue(checkoutPage.isErrorDisplayed(), "Error message was not displayed");
+    }
 
-	@Test
-	public void testIfBlankZipShowsError() {
-		checkoutPage.enterCheckoutInfo("Ivan", "Virgo", "");
-		checkoutPage.clickContinue();
-		Assert.assertTrue(checkoutPage.isErrorDisplayed(), "Error message was not displayed");
-	}
+    @Test
+    public void testIfBlankFirstNameShowsError() {
+        String[] data = CheckoutPageUtil.getCheckoutTestData("blankFirstName");
+        checkoutPage.enterCheckoutInfo(data[0], data[1], data[2]);
+        checkoutPage.clickContinue();
+        Assert.assertTrue(checkoutPage.isErrorDisplayed(), "Error message was not displayed");
+    }
 
-	@Test
-	public void testFirstNameOnlyError() {
-		checkoutPage.enterCheckoutInfo("Ivan", "", "");
-		checkoutPage.clickContinue();
-		Assert.assertTrue(checkoutPage.isErrorDisplayed(), "Error message was not displayed");
-	}
+    @Test
+    public void testIfBlankLastNameShowsError() {
+        String[] data = CheckoutPageUtil.getCheckoutTestData("blankLastName");
+        checkoutPage.enterCheckoutInfo(data[0], data[1], data[2]);
+        checkoutPage.clickContinue();
+        Assert.assertTrue(checkoutPage.isErrorDisplayed(), "Error message was not displayed");
+    }
 
-	@Test
-	public void testLastNameOnlyError() {
-		checkoutPage.enterCheckoutInfo("", "Virgo", "");
-		checkoutPage.clickContinue();
-		Assert.assertTrue(checkoutPage.isErrorDisplayed(), "Error message was not displayed");
-	}
+    @Test
+    public void testIfBlankZipShowsError() {
+        String[] data = CheckoutPageUtil.getCheckoutTestData("blankZip");
+        checkoutPage.enterCheckoutInfo(data[0], data[1], data[2]);
+        checkoutPage.clickContinue();
+        Assert.assertTrue(checkoutPage.isErrorDisplayed(), "Error message was not displayed");
+    }
 
-	@Test
-	public void testZipOnlyError() {
-		checkoutPage.enterCheckoutInfo("", "", "12345");
-		checkoutPage.clickContinue();
-		Assert.assertTrue(checkoutPage.isErrorDisplayed(), "Error message was not displayed");
-	}
+    @Test
+    public void testFirstNameOnlyError() {
+        String[] data = CheckoutPageUtil.getCheckoutTestData("firstNameOnly");
+        checkoutPage.enterCheckoutInfo(data[0], data[1], data[2]);
+        checkoutPage.clickContinue();
+        Assert.assertTrue(checkoutPage.isErrorDisplayed(), "Error message was not displayed");
+    }
 
-	@Test
-	public void testIfAllFieldsFilledProceeds() {
-		checkoutPage.enterCheckoutInfo("Ivan", "Virgo", "12345");
-		checkoutPage.clickContinue();
-		Assert.assertTrue(driver.getCurrentUrl().contains("checkout-step-two.html"),
-				"User was unable to proceed to overview page");
-	}
+    @Test
+    public void testLastNameOnlyError() {
+        String[] data = CheckoutPageUtil.getCheckoutTestData("lastNameOnly");
+        checkoutPage.enterCheckoutInfo(data[0], data[1], data[2]);
+        checkoutPage.clickContinue();
+        Assert.assertTrue(checkoutPage.isErrorDisplayed(), "Error message was not displayed");
+    }
 
+    @Test
+    public void testZipOnlyError() {
+        String[] data = CheckoutPageUtil.getCheckoutTestData("zipOnly");
+        checkoutPage.enterCheckoutInfo(data[0], data[1], data[2]);
+        checkoutPage.clickContinue();
+        Assert.assertTrue(checkoutPage.isErrorDisplayed(), "Error message was not displayed");
+    }
+
+    @Test
+    public void testIfAllFieldsFilledProceeds() {
+        String[] data = CheckoutPageUtil.getCheckoutTestData("validCheckout");
+        checkoutPage.enterCheckoutInfo(data[0], data[1], data[2]);
+        checkoutPage.clickContinue();
+        Assert.assertTrue(driver.getCurrentUrl().contains("checkout-step-two.html"),
+                "User was unable to proceed to overview page");
+    }
 }

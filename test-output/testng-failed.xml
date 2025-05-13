@@ -3,17 +3,20 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="louisivanvirgo.OrderCompTest">
+      <class name="louisivanvirgo.LoginTest">
         <methods>
-          <include name="setUpPages"/>
+          <include name="testLoginPageAccessibility"/>
+          <include name="testBlankPassword"/>
           <include name="setUp"/>
-          <include name="testBackToProductPage"/>
-          <include name="verifyIfAllDetailsAreDisplayed"/>
-          <include name="testFinishButton"/>
-          <include name="verifyIfUserIsOnOrderCompletionPage"/>
+          <include name="testBlankUsername"/>
+          <include name="testIncorrectPassword"/>
+          <include name="testLockedOutUser"/>
+          <include name="testCorrectLogin"/>
           <include name="tearDown"/>
+          <include name="testIncorrectUsername"/>
+          <include name="testBlankBoth"/>
         </methods>
-      </class> <!-- louisivanvirgo.OrderCompTest -->
+      </class> <!-- louisivanvirgo.LoginTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

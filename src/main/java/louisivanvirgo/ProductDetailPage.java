@@ -1,19 +1,12 @@
 package louisivanvirgo;
 
-import java.time.Duration;
 import java.util.List;
-import java.util.NoSuchElementException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import louisivanvirgo.AbstractComponents.BasePage;
-import louisivanvirgo.AbstractComponents.BaseTest;
 
 public class ProductDetailPage extends BasePage {
 
@@ -46,7 +39,7 @@ public class ProductDetailPage extends BasePage {
 		waitForElementToBeVisible(detailPrice);
 		waitForElementToBeVisible(detailImage);
 		waitForElementToBeVisible(addToCartButton);
-		
+
 		return detailName.isDisplayed() && detailDescription.isDisplayed() && detailPrice.isDisplayed()
 				&& detailImage.isDisplayed() && addToCartButton.isDisplayed();
 	}
@@ -60,13 +53,12 @@ public class ProductDetailPage extends BasePage {
 	}
 
 	public String getCartCount() {
-	    List<WebElement> badges = driver.findElements(By.className("shopping_cart_badge"));
-	    if (badges.isEmpty()) {
-	        return "0";
-	    } else {
-	        return waitForElementToBeVisible(cartBadge).getText();
-	    }
+		List<WebElement> badges = driver.findElements(By.className("shopping_cart_badge"));
+		if (badges.isEmpty()) {
+			return "0";
+		} else {
+			return waitForElementToBeVisible(cartBadge).getText();
+		}
 	}
-
 
 }

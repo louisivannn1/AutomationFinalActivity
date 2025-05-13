@@ -9,15 +9,12 @@ public class OrderCompTest extends BaseTest {
 
 	private OverviewPage overviewPage;
 	private OrderCompPage orderCompPage;
-	private LoginPage login;
 	private ProductPage productPage;
 	private CartPage cartPage;
 	private CheckoutPage checkoutPage;
 
 	@BeforeMethod
 	public void setUpPages() {
-		login = new LoginPage(driver);
-		login.loginAs("standard_user", "secret_sauce");
 
 		productPage = new ProductPage(driver);
 		productPage.clickAddToCart(0);

@@ -1,21 +1,16 @@
 package louisivanvirgo;
 
-import java.time.Duration;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import louisivanvirgo.AbstractComponents.BasePage;
-import louisivanvirgo.AbstractComponents.BaseTest;
 
 public class CartFunc extends BasePage {
-	private WebDriver driver;
 
 	public CartFunc(WebDriver driver) {
 		super(driver);
@@ -39,8 +34,8 @@ public class CartFunc extends BasePage {
 
 	@FindBy(css = ".bm-item-list a")
 	private List<WebElement> sidebarOptions;
-	
-	@FindBy(id= "logout_sidebar_link")
+
+	@FindBy(id = "logout_sidebar_link")
 	private WebElement logoutOption;
 
 	public int getCartCount() {
@@ -95,9 +90,9 @@ public class CartFunc extends BasePage {
 		} catch (Exception e) {
 			return true;
 		}
-		
-		
+
 	}
+
 	public void logOut() {
 		waitForElementToBeClickable(logoutOption).click();
 	}
